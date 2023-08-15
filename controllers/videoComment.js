@@ -10,7 +10,7 @@ const getCommentByVideoId = async (req, res) => {
 		}
 		const results = comments.map((item) => {
 			return {
-				username: item.username,
+				username: item.user_name,
 				comment: item.comment,
 				createdAt: item.createdAt,
 				updatedAt: item.updatedAt,
@@ -37,18 +37,16 @@ const addCommentToVideo = async (req, res) => {
 	}
 	try {
 		const comment = new VideoComment({
-			username: req.body.username,
+			user_name: req.body.user_name,
 			comment: req.body.comment,
 			id_video: req.params.videoId,
 		});
 
 		const commentToSave = await comment.save();
-		return res.status(201).json(commentToSave);
+		return res.status(201).json({ message: 'Success' });
 	} catch (error) {
 		console.error(error.message);
-		return res
-			.status(500)
-			.json({ message: 'Something went wrong.', error: error.message });
+		return res.status(500).json({ message: 'Fail' });
 	}
 };
 

@@ -29,6 +29,8 @@ const addVideo = async (req, res) => {
 
 	const video = new Video({
 		url: req.body.url,
+		title: req.body.title,
+		description: req.body.description,
 	});
 
 	try {

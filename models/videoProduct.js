@@ -2,19 +2,21 @@ const mongoose = require('mongoose');
 
 const videoProductSchema = new mongoose.Schema({
 	link_product: {
-		required: true,
+		required: 'Link product is required',
 		type: String,
 	},
 	title: {
-		required: true,
+		required: 'Title product is required',
 		type: String,
 	},
 	price: {
-		required: true,
+		required: 'Price product is required',
 		type: Number,
 	},
 	id_video: {
-		type: String,
+		required: true,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'videos',
 	},
 });
 

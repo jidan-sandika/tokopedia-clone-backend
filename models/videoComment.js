@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const videoCommentSchema = new mongoose.Schema(
 	{
-		username: {
+		user_name: {
 			type: String,
-			required: true,
-			unique: true,
+			required: 'Username is required',
 		},
 		comment: {
 			type: String,
-			required: true,
+			required: 'Comment is required',
 		},
 		id_video: {
-			type: String,
 			required: true,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'videos',
 		},
 	},
 	{ timestamps: true }

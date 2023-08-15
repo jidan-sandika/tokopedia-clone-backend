@@ -1,32 +1,52 @@
 require('dotenv').config();
-const express = require('express');
 const mongoose = require('mongoose');
+const express = require('express');
+const cors = require('cors');
 const mongoUrl = process.env.DATABASE_URL;
 const bodyParser = require('body-parser');
+const generateVideos = require('./generateVideo');
+const generateThumbnail = require('./generateThumbnail');
+const generateProductToVideo = require('./generateProduct');
+const generateCommentToVideo = require('./generateComment');
 
 console.log(mongoUrl);
-mongoose
-	.connect(mongoUrl)
-	.then(() => {
+
+const params = {
+	useNewUrlParser: true,
+};
+
+async function connectToDatabase() {
+	try {
+		await mongoose.connect(mongoUrl, params);
+
 		console.log('Connected to database');
-	})
-	.catch((err) => {
+	} catch (error) {
+		console.error(error);
+	}
+	const database = mongoose.connection;
+
+	database.on('error', (err) => {
 		console.error(err);
 	});
 
-const database = mongoose.connection;
-
-database.on('error', (err) => {
-	console.error(err);
-});
-
-database.once('connected', () => {
-	console.log('Database connected');
-});
+	database.once('connected', () => {
+		console.log('Database connected');
+	});
+}
 
 const routes = require('./routes/routes');
 const app = express();
-// app.use(express.json());
+
+connectToDatabase();
+
+generateVideos(
+	generateThumbnail,
+	generateProductToVideo,
+	generateCommentToVideo
+);
+
+app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

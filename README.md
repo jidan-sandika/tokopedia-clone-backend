@@ -1,4 +1,4 @@
-# Backe end tokopedia play clone By GG3FSUP0119_Jidan Sandika Hidayat FS_6
+# Backend tokopedia play clone By GG3FSUP0119_Jidan Sandika Hidayat FS_6
 ## Prequisite
 1. [MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/)
 2. [NodeJS](https://nodejs.org/en/download) v16 or higher 

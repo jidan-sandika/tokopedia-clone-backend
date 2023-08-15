@@ -25,7 +25,8 @@ const addThumbnail = async (req, res) => {
 	}
 
 	const thumbnail = new VideoThumbnail({
-		url_image: req.body.url,
+		url: req.body.url,
+		title: req.body.title,
 		id_video: req.params.videoId,
 	});
 	try {
@@ -87,7 +88,8 @@ const updateThumbnailByVideoId = async (req, res) => {
 				id_video: id,
 			},
 			{
-				url_image: updatedThumbnailData.url,
+				url: updatedThumbnailData.url,
+				title: updatedThumbnailData.title,
 				id_video: id,
 			},
 			option
