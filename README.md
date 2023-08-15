@@ -3,6 +3,9 @@
 1. [MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/)
 2. [NodeJS](https://nodejs.org/en/download) v16 or higher 
 3. NPM v8 or higher usually included with NodeJS
+4. Do not use Atlas cloud MongoDB because it will blocked by Telkomsel: a.k.a internet positif, instead use localhost for backend server.
+5. Make sure server running on http://localhost:5000
+6. The data for test front end side, will auto generate on your local mongoDB.
 
 ## Installation
 1. Clone this repository
@@ -163,7 +166,7 @@ The REST API to the example app is described below.
 
     {"id":1,"url":"urlExample"}
 
-## Delete a Video
+## Delete a Thumbnail Video
 
 ### Request
 
@@ -222,7 +225,7 @@ The REST API to the example app is described below.
 
 ### Request
 
-`GET /api/products/:videoid`
+`GET /api/comments/:videoid`
 
 
 ### Response
@@ -241,7 +244,7 @@ The REST API to the example app is described below.
 
 ### Request
 
-`POST /api/products/:videoId`
+`POST /api/comments/:videoId`
 
 
 ### Response
@@ -253,5 +256,6 @@ The REST API to the example app is described below.
     Content-Type: application/json
     Location: /thing/1
     Content-Length: 36
-
+    
     {"username":"usernameExample", "comment": "commentExample"}
+
