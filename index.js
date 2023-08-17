@@ -45,7 +45,11 @@ generateVideos(
 	generateCommentToVideo
 );
 
-app.use(cors());
+const corsOptions = {
+	origin: 'https://final-project-tokopedia-play-clone-frontend.vercel.app/',
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
